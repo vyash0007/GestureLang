@@ -11,7 +11,7 @@ export default function Footer() {
       {/* Styled JSX */}
       <style jsx>{`
         .footer {
-          background-color: #333;
+          background-color: #002B54;
           color: #fff; /* White text */
           text-align: center;
           padding: 15px 0;

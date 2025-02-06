@@ -21,7 +21,7 @@ export default function Home() {
           </p>
         </div>
         <div className="hero-image">
-          <img src="https://static.vecteezy.com/system/resources/previews/021/217/883/original/smiling-children-showing-different-hand-gestures-happy-kids-demonstrate-symbols-and-signs-nonverbal-communication-and-body-language-illustration-vector.jpg" alt="Concept illustration of Gesture Language" alt="People communicating using gestures" />
+          <img src="/loginImg.png" />
         </div>
       </section>
 
@@ -35,7 +35,7 @@ export default function Home() {
           communication, our platform offers interactive tutorials, community
           support, and expert insights to help you master this innovative language.
         </p>
-        {/* <img src="https://static.vecteezy.com/system/resources/previews/021/217/883/original/smiling-children-showing-different-hand-gestures-happy-kids-demonstrate-symbols-and-signs-nonverbal-communication-and-body-language-illustration-vector.jpg" alt="Concept illustration of Gesture Language" /> */}
+        {/* <img src="/loginImg.png" /> */}
       </section>
 
       {/* Features Section */}
@@ -71,7 +71,7 @@ export default function Home() {
           flex: 1;
           min-width: 300px;
           padding: 1rem;
-          background-color: rgba(0, 0, 0, 0.5);
+          background-color:rgb(67, 86, 125);
           border-radius: 8px;
           margin: 1rem;
         }
@@ -98,7 +98,8 @@ export default function Home() {
         .info {
           padding: 2rem;
           text-align: center;
-          background-color: #f9f9f9;
+          background-color: rgb(67, 86, 125);
+          color: #ffffff;
         }
         .info h2 {
           font-size: 2rem;
@@ -121,7 +122,7 @@ export default function Home() {
           flex: 1;
           min-width: 300px;
           padding: 1rem;
-          background-color: rgba(0, 0, 0, 0.5);
+          background-color: rgb(67, 86, 125);
           border-radius: 8px;
           margin: 1rem;
           text-align:center;

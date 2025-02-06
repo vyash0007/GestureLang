@@ -1,24 +1,21 @@
-// pages/index.js (or app/page.js for Next.js 13 with the App Router)
 'use client'
 import React from 'react';
 import NavBar from '../components/navbar';
 import Footer from '../components/footer';
 
-
 const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+const images = Array.from({ length: 26 }, (_, i) => `/images/image-${i + 1}.jpg`);
 
 export default function Home() {
   return (
-
-    
     <div className="container">
       <h1>Alphabet Gesture</h1>
       <div className="card-grid">
-        {letters.map(letter => (
+        {letters.map((letter, index) => (
           <div className="card" key={letter}>
             <img
-              src="https://c8.alamy.com/comp/2EABY8R/human-hand-showing-gesture-communication-language-gesturing-concept-vertical-vector-illustration-2EABY8R.jpg"
-              alt="Placeholder"
+              src={images[index]} // Dynamically set image source
+              alt={`Gesture for ${letter}`}
               className="card-image"
             />
             <div className="card-content">
@@ -44,7 +41,7 @@ export default function Home() {
           margin-top: 2rem;
         }
         .card {
-          background: #C5B4E3;
+          background:rgb(133, 200, 200);
           border-radius: 8px;
           overflow: hidden;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

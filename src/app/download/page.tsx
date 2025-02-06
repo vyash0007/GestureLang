@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function DownloadPage() {
   return (
-    <div className="max-w-7xl mx-auto p-6 h-screen my-auto mt-[100px] mb-[-153px] font-Arial ">
+    <div className="max-w-7xl mx-auto p-6 h-screen my-auto mt-[100px] mb-[-153px] font-mono ">
       <header className="flex justify-between items-center pb-4 border-b border-black">
         <h1 className="text-6xl font-bold text-black">Our App</h1>
         

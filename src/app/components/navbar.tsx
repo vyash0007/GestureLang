@@ -45,7 +45,7 @@ const NavBar = () => {
           justify-content: space-between;
           align-items: center;
           padding: 1rem 2rem;
-          background-color: #333;
+          background-color: #002B54;
           color: #fff;
           z-index: 1000; /* Ensure it sits on top of other elements */
         }
