@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 
 const sampleText = `Gesture: A -> open hand, up-sweep`;
 
@@ -52,8 +53,8 @@ export default function DownloadPage() {
           <div className="mt-4">
             <h3 className="font-medium">Selected image</h3>
             <div className="mt-2">
-              <div className="w-full h-56 md:h-72 bg-slate-50 dark:bg-slate-700 rounded flex items-center justify-center overflow-hidden">
-                <img src={selectedImage} alt="selected" className="max-w-full max-h-full object-contain" />
+              <div className="relative w-full h-56 md:h-72 bg-slate-50 dark:bg-slate-700 rounded overflow-hidden fade-in flex items-center justify-center p-3">
+                <Image src={selectedImage} alt="selected" fill priority style={{ objectFit: 'contain' }} className="transition-transform duration-150" />
               </div>
             </div>
             <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">Size: {size ? `${(size/1024).toFixed(1)} KB` : 'Unknown'}</div>
@@ -69,12 +70,26 @@ export default function DownloadPage() {
           <h2 className="font-semibold">Preview + Options</h2>
           <div className="mt-3">
             <p className="text-sm text-slate-600 dark:text-slate-300">Choose another sample image to preview file-size and download.</p>
-            <div className="mt-3 grid grid-cols-3 gap-2">
-              {[1,2,3,4,5,6].map(i => (
-                <button key={i} onClick={() => setSelectedImage(`/images/image-${i}.svg`)} className={`h-20 w-full rounded overflow-hidden flex items-center justify-center bg-white dark:bg-slate-800 ${selectedImage===`/images/image-${i}.svg`? 'ring-2 ring-amber-400':''}`}>
-                  <img src={`/images/image-${i}.svg`} alt={`img-${i}`} className="max-h-full max-w-full object-contain p-1" />
-                </button>
-              ))}
+            <div className="mt-3 grid grid-cols-3 gap-3">
+              {[1,2,3,4,5,6].map(i => {
+                const src = `/images/image-${i}.svg`;
+                const label = `Gesture ${String.fromCharCode(64 + i)}`;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(src)}
+                    className={`flex flex-col h-44 w-full rounded overflow-hidden bg-transparent ${selectedImage===src? 'ring-2 ring-amber-400':''}`}
+                    aria-pressed={selectedImage===src}
+                  >
+                    <div className="flex-none h-28 relative bg-white dark:bg-slate-800 p-2 flex items-center justify-center">
+                      <div className="relative w-full h-full">
+                        <Image src={src} alt={`img-${i}`} fill style={{ objectFit: 'contain' }} sizes="(max-width: 768px) 33vw, 100px" />
+                      </div>
+                    </div>
+                    <div className="h-12 flex items-center justify-center text-center text-sm font-semibold text-slate-700 dark:text-slate-200 bg-transparent">{label}</div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -9,11 +10,14 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
-          <div>
-            <h3 className="text-2xl font-bold mb-2">GestureLang</h3>
-            <p className="text-slate-300 text-sm">
-              Breaking language barriers through the art of gesture communication.
-            </p>
+          <div className="flex items-start gap-4">
+            <Image src="/gesturelang-logo.svg" alt="GestureLang" width={64} height={64} priority />
+            <div>
+              <h3 className="text-2xl font-bold mb-2">GestureLang</h3>
+              <p className="text-slate-300 text-sm">
+                Breaking language barriers through the art of gesture communication.
+              </p>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -31,10 +35,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-sm text-slate-300">
-              <li><a href="#" className="hover:text-amber-400">Blog</a></li>
-              <li><a href="#" className="hover:text-amber-400">FAQ</a></li>
-              <li><a href="#" className="hover:text-amber-400">Contact</a></li>
-              <li><a href="#" className="hover:text-amber-400">Privacy</a></li>
+              <li><Link href="/blog" className="hover:text-amber-400">Blog</Link></li>
+              <li><Link href="/faq" className="hover:text-amber-400">FAQ</Link></li>
+              <li><Link href="/contact" className="hover:text-amber-400">Contact</Link></li>
+              <li><Link href="/privacy" className="hover:text-amber-400">Privacy</Link></li>
             </ul>
           </div>
 

@@ -1,5 +1,6 @@
 "use client";
 import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import GestureCard from "../components/GestureCard";
 import GestureModal from "../components/GestureModal";
 
@@ -35,12 +36,14 @@ export default function GesturePage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-        {filtered.map((it) => (
-          <GestureCard key={it.letter} letter={it.letter} image={it.src} onOpen={openCard} />
+        {filtered.map((it, i) => (
+          <motion.div key={it.letter} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: i * 0.03 }}>
+            <GestureCard key={it.letter} letter={it.letter} image={it.src} onOpenAction={openCard} />
+          </motion.div>
         ))}
       </div>
 
-      <GestureModal open={!!selected} letter={selected?.letter} src={selected?.src} onClose={() => setSelected(null)} />
+  <GestureModal open={!!selected} letter={selected?.letter} src={selected?.src} onCloseAction={() => setSelected(null)} />
     </div>
   );
 }

@@ -34,7 +34,8 @@ export default function ThemeToggle() {
     <button
       aria-label="Toggle theme"
       onClick={toggle}
-      className="p-2 rounded-md bg-slate-200 dark:bg-slate-700 text-sm"
+      aria-pressed={isDark}
+      className="p-2 rounded-md bg-slate-200 dark:bg-slate-700 text-sm interactive focus-ring"
     >
       {isDark ? "🌙" : "☀️"}
     </button>

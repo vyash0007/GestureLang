@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -26,8 +27,8 @@ export default function Home() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <div className="aspect-video bg-slate-200 dark:bg-slate-700 rounded-lg shadow-lg flex items-center justify-center overflow-hidden">
-              <img src="/loginImg.png" alt="Gesture demonstration" className="w-full h-full object-cover" />
+            <div className="relative aspect-video bg-slate-200 dark:bg-slate-700 rounded-lg shadow-lg overflow-hidden">
+              <Image src="/loginImg.png" alt="Gesture demonstration" fill className="object-cover" />
             </div>
           </motion.div>
         </div>

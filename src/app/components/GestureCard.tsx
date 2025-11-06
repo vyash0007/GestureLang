@@ -1,33 +1,38 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 export default function GestureCard({
   letter,
   image,
-  onOpen,
+  onOpenAction,
 }: {
   letter: string;
   image: string;
-  onOpen: (l: string, src: string) => void;
+  onOpenAction: (l: string, src: string) => void;
 }) {
   const [broken, setBroken] = React.useState(false);
   return (
     <div
-      className="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
-      onClick={() => onOpen(letter, image)}
+      className="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden cursor-pointer transition-all duration-300"
+      onClick={() => onOpenAction(letter, image)}
     >
-      <div className="h-40 w-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+      <div className="relative h-40 w-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
         {broken ? (
           <div className="w-full h-full flex items-center justify-center">
             <span className="text-6xl font-bold text-slate-400">{letter}</span>
           </div>
         ) : (
-          <img
-            src={image}
-            alt={`Gesture ${letter}`}
-            className="object-contain object-center max-h-full max-w-full h-full w-full p-2"
-            onError={() => setBroken(true)}
-          />
+          <>
+            <Image
+              src={image}
+              alt={`Gesture ${letter}`}
+              fill
+              sizes="(max-width: 640px) 160px, 320px"
+              className="object-contain p-2"
+              onError={() => setBroken(true)}
+            />
+          </>
         )}
       </div>
       <div className="p-3">

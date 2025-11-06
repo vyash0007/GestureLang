@@ -24,3 +24,29 @@ body {
 .card {
   background-color: color-mix(in srgb, var(--background) 88%, black 0%);
 }
+
+/* Motion & accessibility helpers */
+:root {
+  --focus-ring: 3px;
+}
+
+/* gentle elevation and transitions for interactive elements */
+.interactive {
+  transition: transform 160ms cubic-bezier(.2,.9,.3,1), box-shadow 160ms ease, background-color 160ms ease;
+}
+.interactive:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+}
+.interactive:active { transform: translateY(-1px) scale(0.998); }
+
+/* focus-visible ring for keyboard users */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring) rgba(250,204,21,0.25), 0 0 0 calc(var(--focus-ring) + 2px) rgba(250,204,21,0.12);
+  border-radius: 8px;
+}
+
+/* small utility for subtle fade-in when components mount */
+.fade-in { opacity: 0; transform: translateY(6px); animation: fadeInUp 320ms ease forwards; }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0);} }
