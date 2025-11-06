@@ -1,41 +1,83 @@
-'use client'
-import Image from "next/image";
-import { useState } from "react";
+"use client";
+import React, { useState } from "react";
+
+const sampleText = `Gesture: A -> open hand, up-sweep`;
 
 export default function DownloadPage() {
+  const [format, setFormat] = useState("png");
+  const [selectedImage, setSelectedImage] = useState("/images/image-1.svg");
+  const [size, setSize] = useState<number | null>(null);
+
+  async function computeSize(src: string) {
+    try {
+      const res = await fetch(src);
+      const blob = await res.blob();
+      setSize(blob.size);
+    } catch {
+      setSize(null);
+    }
+  }
+
+  React.useEffect(() => {
+    computeSize(selectedImage);
+  }, [selectedImage]);
+
+  async function copyText() {
+    try {
+      await navigator.clipboard.writeText(sampleText);
+      alert("Copied sample gesture text to clipboard");
+    } catch {
+      alert("Copy failed");
+    }
+  }
+
   return (
-    <div className="max-w-7xl mx-auto p-6 h-screen my-auto mt-[100px] mb-[-153px] font-mono ">
-      <header className="flex justify-between items-center pb-4 border-b border-black">
-        <h1 className="text-6xl font-bold text-black">Our App</h1>
-        
-      </header>
-      
-      {/* <div className="mt-6">
-        <button className="px-4 py-2 mr-2 border rounded text-black-500">Windows</button>
-        <button className="px-4 py-2 mr-2 border rounded text-black-500">macOS</button>
-        <button className="px-4 py-2 border rounded text-black-500">Linux</button>
-      </div> */}
-      
-      <div className="mt-6 flex flex-col md:flex-row items-center gap-6">
-        <div className="flex-1">
-          <h2 className="text-2xl font-semibold text-black">Our App Ultimate</h2>
-          <p className="text-black text-xl">The Leading Software for Professionals</p>
-          <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-xl ">Download .exe (Windows)</button>
-          <p className="text-black text-l mt-2 ">Free 30-day trial</p>
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-bold">Download</h1>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="p-4 bg-white dark:bg-slate-800 rounded">
+          <h2 className="font-semibold">Choose format</h2>
+          <div className="mt-3 flex gap-2">
+            <label className={`px-3 py-2 rounded border ${format==='png'?'bg-amber-400':''}`}>
+              <input type="radio" name="format" value="png" checked={format==='png'} onChange={() => setFormat('png')} /> PNG
+            </label>
+            <label className={`px-3 py-2 rounded border ${format==='jpg'?'bg-amber-400':''}`}>
+              <input type="radio" name="format" value="jpg" checked={format==='jpg'} onChange={() => setFormat('jpg')} /> JPG
+            </label>
+            <label className={`px-3 py-2 rounded border ${format==='svg'?'bg-amber-400':''}`}>
+              <input type="radio" name="format" value="svg" checked={format==='svg'} onChange={() => setFormat('svg')} /> SVG
+            </label>
+          </div>
+
+          <div className="mt-4">
+            <h3 className="font-medium">Selected image</h3>
+            <div className="mt-2">
+              <img src={selectedImage} alt="selected" className="w-full h-40 object-cover rounded" />
+            </div>
+            <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">Size: {size ? `${(size/1024).toFixed(1)} KB` : 'Unknown'}</div>
+          </div>
+
+          <div className="mt-4 flex gap-2">
+            <a href={selectedImage} download className="px-4 py-2 bg-amber-400 rounded">Download {format.toUpperCase()}</a>
+            <button onClick={copyText} className="px-4 py-2 border rounded">Copy Sample</button>
+          </div>
         </div>
-        <div className="relative w-72 h-48 border rounded-xl overflow-hidden border-black">
-          <Image src="" alt="App Screenshot" layout="fill" objectFit="cover" />
+
+        <div className="p-4 bg-white dark:bg-slate-800 rounded">
+          <h2 className="font-semibold">Preview + Options</h2>
+          <div className="mt-3">
+            <p className="text-sm text-slate-600 dark:text-slate-300">Choose another sample image to preview file-size and download.</p>
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {[1,2,3,4,5,6].map(i => (
+                <button key={i} onClick={() => setSelectedImage(`/images/image-${i}.svg`)} className={`h-20 w-full rounded overflow-hidden ${selectedImage===`/images/image-${i}.svg`? 'ring-2 ring-amber-400':''}`}>
+                  <img src={`/images/image-${i}.svg`} alt={`img-${i}`} className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-      
-      <footer className="mt-6 text-black text-sm text-xl">
-        <p>Version: 2025.1.0.1| Build: 243.23654.189 | 29 January 2025</p>
-        <div className="flex space-x-4 mt-2 text-xl">
-          <a href="#" className="underline">System requirements</a>
-          <a href="#" className="underline">Installation instructions</a>
-          <a href="#" className="underline">Other versions</a>
-        </div>
-      </footer>
     </div>
   );
 }
+

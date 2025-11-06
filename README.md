@@ -1,3 +1,41 @@
+# GestureLang — UI Improvements
+
+This branch adds several UI improvements and small features to the GestureLang Next.js app:
+
+- Dark / light theme toggle (persists in localStorage)
+- Responsive Tailwind-based NavBar with mobile menu
+- Animated Gesture page (searchable grid, animated cards, modal with copy/download)
+- Interactive Tutorial page (stepper with progress)
+- Download page improvements (format choices, preview, compute file size, copy-to-clipboard)
+- Framer Motion for small animations
+
+How to run
+
+1. Install dependencies
+
+```powershell
+cd 'c:\Users\vyash\OneDrive\Desktop\GestureLang\GestureLang'
+npm install
+```
+
+2. Start dev server
+
+```powershell
+npm run dev
+```
+
+Open http://localhost:3000 (or 3001 if 3000 is in use).
+
+Quality checks
+
+- Type-check: `npm run typecheck`
+- Lint: `npm run lint`
+- Combined: `npm run check`
+
+Notes
+
+- Sample images are expected under `public/images/image-1.jpg` ... `image-26.jpg`. If absent, add placeholder images.
+- If you want stronger animations, we can increase Framer Motion usage for page transitions.
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
