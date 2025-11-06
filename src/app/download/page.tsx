@@ -52,7 +52,9 @@ export default function DownloadPage() {
           <div className="mt-4">
             <h3 className="font-medium">Selected image</h3>
             <div className="mt-2">
-              <img src={selectedImage} alt="selected" className="w-full h-40 object-cover rounded" />
+              <div className="w-full h-56 md:h-72 bg-slate-50 dark:bg-slate-700 rounded flex items-center justify-center overflow-hidden">
+                <img src={selectedImage} alt="selected" className="max-w-full max-h-full object-contain" />
+              </div>
             </div>
             <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">Size: {size ? `${(size/1024).toFixed(1)} KB` : 'Unknown'}</div>
           </div>
@@ -69,8 +71,8 @@ export default function DownloadPage() {
             <p className="text-sm text-slate-600 dark:text-slate-300">Choose another sample image to preview file-size and download.</p>
             <div className="mt-3 grid grid-cols-3 gap-2">
               {[1,2,3,4,5,6].map(i => (
-                <button key={i} onClick={() => setSelectedImage(`/images/image-${i}.svg`)} className={`h-20 w-full rounded overflow-hidden ${selectedImage===`/images/image-${i}.svg`? 'ring-2 ring-amber-400':''}`}>
-                  <img src={`/images/image-${i}.svg`} alt={`img-${i}`} className="h-full w-full object-cover" />
+                <button key={i} onClick={() => setSelectedImage(`/images/image-${i}.svg`)} className={`h-20 w-full rounded overflow-hidden flex items-center justify-center bg-white dark:bg-slate-800 ${selectedImage===`/images/image-${i}.svg`? 'ring-2 ring-amber-400':''}`}>
+                  <img src={`/images/image-${i}.svg`} alt={`img-${i}`} className="max-h-full max-w-full object-contain p-1" />
                 </button>
               ))}
             </div>
